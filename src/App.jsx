@@ -1,31 +1,55 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import React, { useState, useEffect } from "react";
+import Navbar from "./Components/Navbar";
+import Hero from "./Components/Hero";
+import About from "./Components/About";
+import Techonologies from "./Components/Techonologies";
+import Intern from "./Components/Intern";
+import Projects from "./Components/Projects";
+import Contact from "./Components/Contact";
+import Typewriter from 'typewriter-effect';
 
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Services from "./Pages/Services";
-import MyWork from "./Pages/MyWork";
-import Contact from "./Pages/Contact";
-import ThankYou from "./Pages/ThankYou";
-import NotFound from "./Pages/NotFound";
+const App = () => {
+  const [showContent, setShowContent] = useState(false);
 
-function App() {
+  useEffect(() => {
+    // Set showContent to true after the typewriter finishes
+    setTimeout(() => setShowContent(true), 8000); // Adjusted time based on typewriter speed and strings length
+  }, []);
+
   return (
-    <Router>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/mywork" element={<MyWork />} />
-          <Route path="/contact" element={<Contact />} />
-           <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Router>
+    <div className="overflow-x-hidden antialiased selection:bg-cyan-300 selection:text-cyan-900">
+      <div className="fixed top-0 -z-10 h-full w-full bg-black">
+        <div className="absolute top-0 z-[-2] h-screen w-screen bg-black"></div>
+      </div>
+
+      <div className="container mx-auto px-8 text-white text-center">
+        {!showContent && (
+          <Typewriter className='text-center '
+            options={{
+              strings: ['My name is ', 'I am a FrontEnd Developer'],
+              typeSpeed: 70,
+              delayMs: 500, // Adjust delay between each string
+              autoStart: true,
+              loop: false, // Do not loop the effect
+            }}
+            onFinishedTyping={() => setShowContent(true)} // Trigger to show content after typing finishes
+          />
+        )}
+
+        {showContent && (
+          <>
+            <Navbar />
+            <Hero />
+            <About />
+            <Techonologies />
+            <Intern />
+            <Projects />
+            <Contact />
+          </>
+        )}
+      </div>
+    </div>
   );
-}
+};
 
 export default App;
