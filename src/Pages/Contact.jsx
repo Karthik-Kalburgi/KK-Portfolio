@@ -3,7 +3,6 @@ import React, { useState } from "react";
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
 
   const validate = () => {
     const errs = {};
@@ -27,25 +26,9 @@ const Contact = () => {
     setErrors(errs);
     if (Object.keys(errs).length > 0) {
       e.preventDefault(); // Stop form submission if errors exist
-    } else {
-      // let Netlify handle the form submission
     }
+    // Else: Netlify will handle submission and redirect to /thank-you
   };
-
-  // Form successfully submitted
-  if (submitted) {
-    return (
-      <section
-        id="contact"
-        className="py-16 bg-gray-50 px-4 text-center max-w-2xl mx-auto"
-      >
-        <h2 className="text-3xl font-semibold text-indigo-600 mb-6">
-          Thank you for contacting me!
-        </h2>
-        <p className="text-gray-700">I’ll get back to you soon.</p>
-      </section>
-    );
-  }
 
   return (
     <section id="contact" className="py-16 bg-gray-50 px-4">
@@ -67,7 +50,6 @@ const Contact = () => {
           {/* Netlify hidden inputs */}
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
-          <div data-netlify-recaptcha="true" className="mt-4"></div>
             <label>
               Don’t fill this out:{" "}
               <input name="bot-field" onChange={handleChange} />
@@ -128,8 +110,8 @@ const Contact = () => {
             )}
           </div>
 
-          {/* reCAPTCHA automatically rendered by Netlify */}
-          <div data-netlify-recaptcha="true" className="mt-4" />
+          {/* reCAPTCHA placeholder for Netlify to inject */}
+          <div data-netlify-recaptcha="true" className="flex justify-center mt-4" />
 
           {/* Submit Button */}
           <button
