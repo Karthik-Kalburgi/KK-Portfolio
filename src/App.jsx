@@ -3,7 +3,7 @@ import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import About from "./Components/About";
 import Techonologies from "./Components/Techonologies";
-import Intern from "./Components/Intern";
+// import Intern from "./Components/Intern";
 import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
 import Typewriter from 'typewriter-effect';
@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     // Set showContent to true after the typewriter finishes
-    setTimeout(() => setShowContent(true), 8000); // Adjusted time based on typewriter speed and strings length
+    setTimeout(() => setShowContent(true), 1000); // Adjusted time based on typewriter speed and strings length
   }, []);
 
   return (
@@ -22,13 +22,13 @@ const App = () => {
         <div className="absolute top-0 z-[-2] h-screen w-screen bg-black"></div>
       </div>
 
-      <div className="container mx-auto px-8 text-white text-center">
-        {!showContent && (
+      <div className="container mx-auto px-8  text-white text-center">
+        {showContent && (
           <Typewriter className='text-center '
             options={{
-              strings: ['My name is ', 'I am a FrontEnd Developer'],
-              typeSpeed: 70,
-              delayMs: 500, // Adjust delay between each string
+              strings: ['My name is Karthik Kalburgi', 'I am a FrontEnd Developer'],
+              typeSpeed: 10,
+              delayMs: 10, // Adjust delay between each string
               autoStart: true,
               loop: false, // Do not loop the effect
             }}
@@ -42,7 +42,7 @@ const App = () => {
             <Hero />
             <About />
             <Techonologies />
-            <Intern />
+            {/* <Intern /> */}
             <Projects />
             <Contact />
           </>
