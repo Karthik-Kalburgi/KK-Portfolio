@@ -22,12 +22,13 @@ const Contact = () => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const errs = validate();
     setErrors(errs);
-    if (Object.keys(errs).length > 0) {
-      e.preventDefault(); // Stop form submission if errors exist
+
+    if (Object.keys(errs).length === 0) {
+      e.target.submit(); // Let Netlify process it and redirect
     }
-    // Else: Netlify will handle submission and redirect to /thank-you
   };
 
   return (
@@ -110,7 +111,7 @@ const Contact = () => {
             )}
           </div>
 
-          {/* reCAPTCHA placeholder for Netlify to inject */}
+          {/* reCAPTCHA */}
           <div data-netlify-recaptcha="true" className="flex justify-center mt-4" />
 
           {/* Submit Button */}
