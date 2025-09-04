@@ -67,6 +67,7 @@ const Contact = () => {
           {/* Netlify hidden inputs */}
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
+          <div data-netlify-recaptcha="true" className="mt-4"></div>
             <label>
               Don’t fill this out:{" "}
               <input name="bot-field" onChange={handleChange} />
